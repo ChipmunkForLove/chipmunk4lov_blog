@@ -1,0 +1,72 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family:'Malgun Gothic';
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    color: black;
+}
+
+main.container-fluid {
+  min-height: 100%;
+  margin-bottom:120px;
+}
+
+footer {
+  height: 120px;
+  margin-top: -120px;
+  background-color: #F0F0F0;
+}
+
+.recent-post{
+    margin-left:24px;
+    margin-right:24px;
+}
+
+.post-box{
+    padding-top:24px;
+    padding-bottom:24px;
+    border-bottom: solid 1px #00000018;
+    color: #454545;
+}
+
+.post-title{
+    padding-top:6px;
+    padding-bottom:6px;
+}
+.post-date{
+    padding-top:6px;
+    padding-bottom:6px;
+    color:#828282;
+}
+.post-content{
+    padding-top:6px;
+    padding-bottom:6px;
+    color:#828282;
+}
+
+.post-tag{
+    display:flex;
+    flex-direction: row;
+}
+
+.custom-badge{
+   font-size: 14px;
+   display:inline-block;
+   align-self: center;
+   border-radius: 14px;
+   margin-right:4px;
+   padding: 2px 8px;
+   border:1px solid #EF8D9C;
+   color:#EF8D9C;
+}

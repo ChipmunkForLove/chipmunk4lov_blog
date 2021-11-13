@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Yunyeong Kwon</title>
+    <!-- Bootstrap core css-->
+    <link rel="stylesheet" href="{% static 'project/bootstrap/bootstrap.min.css' %}" media="screen">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'project/css/project.css' %}" media="screen">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  {% include 'project/navbar.html' %}
+  <!-- Banner Image  -->
+<main class="container-fluid">
+  <!-- Main Content Area -->
+  <div class="main-container">
+    <div class="d-none d-lg-block"><div class="margin-box"></div></div>
+    <div class="card-container">
+      <ul class="cards">
+
+        {% if post_list.exists %}
+        {% for p in post_list %}
+        <li class="cards_item">
+          <div class="card">
+            <img class="card_image" src="{{ p.head_image.url }}">
+            <div class="card_content">
+                <a href="{{ p.get_absolute_url}}"class="stretched-link" title="{{ p.title }}" >
+                      <h2 class="card_title">{{ p.title }}</h2>
+                       <div class="links">
+                           {% if p.related_link %}
+                          <div style="font-size:14px; font-weight: 300;"><i class="fas fa-link"></i> link&nbsp;&nbsp;</div>
+                          {% endif %}
+                          {% if p.video_link %}
+                          <div style="font-size:14px; font-weight: 300;"><i class="fas fa-play-circle"></i> video&nbsp;&nbsp;</div>
+                          {% endif %}
+                          {% if p.github_link %}
+                          <div style="font-size:14px; font-weight: 300;"><i class="fab fa-github"></i> code&nbsp;&nbsp;</div>
+                          {% endif %}
+                       </div>
+                     <div class="card_text">{{p.hook_text}} </div>
+                     {% if p.tags.exists %}
+                     {%for tag in p.tags.iterator %}
+                        <div class="custom-badge"># {{tag}}</div>
+                     {%endfor%}
+                     {%endif%}
+                </a>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+           {% else %}
+              <h6 style="text-align:center">아직 게시물이 없습니다.</h6>
+          {% endif %}
+
+      </ul>
+    </div>
+    <div class="d-none d-lg-block"><div class="margin-box"></div></div>
+  </div>
+</main>
+  {% include 'project/footer.html' %}
+</body>
+
+  <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</html>

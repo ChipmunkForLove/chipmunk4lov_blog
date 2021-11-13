@@ -1,0 +1,107 @@
+ <!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Yunyeong Kwon</title>
+    <!-- Bootstrap core css-->
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'blog/css/blog-post.css' %}" media="screen">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+
+
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  {% include 'blog/navbar.html' %}
+  <!-- Banner Image  -->
+<main class="container-fluid">
+  <!-- Main Content Area -->
+    <div class="flex-container">
+        <div class="row justify-content-between">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+        <div class="post-detail">
+          <!-- Title -->
+          <h3>{{post.title}}</h3>
+          <hr>
+          <!-- Category,Date/Time -->
+        {% if post.category %}
+            <p><a href="{{post.category.get_absolute_url}}">{{post.category}}</a> &emsp;{{ post.created_at}}</p>
+        {% endif %}
+          <hr>
+          <!-- Post Content -->
+          <br>
+          <p>{{ post.get_content_markdown | safe}}</p>
+          <br>
+          {% if post.file_upload %}
+              <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download>
+                  Download:
+
+                  {% if post.get_file_ext == 'csv' %}
+                      <i class="fas fa-file-csv"></i>
+                  {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                      <i class="fas fa-file-excel"></i>
+                  {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                      <i class="fas fa-file-word"></i>
+                  {% else %}
+                      <i class="far fa-file"></i>
+                  {% endif %}
+
+                  {{ post.get_file_name }}
+              </a>
+          {% endif %}
+          <hr>
+    </div>
+
+        <!-- Comments Form -->
+                <div class="comment"><div id="disqus_thread"></div></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = www.chipmunk4lov.com/blog/{{post.pk}};  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = {{post.pk}}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://chipmunk4lov.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+            <div class="col-lg-2"></div>
+</main>
+  {% include 'blog/footer.html' %}
+</body>
+
+  <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</html>
